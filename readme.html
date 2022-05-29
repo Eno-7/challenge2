@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2>Proje Kurulumu İçin Gerekenler</h2>
+
+<code>git pull</code> 'dan sonra
+
+<code>
+    composer install <br>
+    mv .env.example .env (env içindeki database düzenlemeleri yapılır) <br>
+    php artisan migrate --seed<br>
+    php artisan serve
+</code>
+
+<h2>Api Endpointleri </h2>
+<table>
+    <tr>
+        <td>
+            Endpoint
+        </td>
+        <td>Header (Authorization)</td>
+        <td>
+            Parameters
+        </td>
+        <td>
+            Response
+        </td>
+    <tr>
+        <td>
+            /api/register
+        </td>
+    <td></td>
+        <td>
+            <ul>
+                <li>
+                    <ul>
+                        <li>email (required)</li>
+                        <li>password (required)</li>
+                        <li>name (required)</li>
+                        <li>last_name (required)</li>
+                        <li>site_url (required)</li>
+                        <li>company_name (required)</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    <td>
+        <ul>
+            <li>status (string)</li>
+            <li>token (string)</li>
+            <li>company_id (integer)</li></ul>
+    </td>
+    </tr>
+    <tr>
+        <td>
+            /api/add_package_to_company
+        </td>
+        <td></td>
+        <td>
+            <ul>
+                <li>company_id (required)</li>
+                <li>package_id (required)</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>
+                    status (string)
+                </li>
+                <li>
+                    start_date (datetime)
+                </li>
+                <li>
+                    end_date (datetime)
+                </li>
+                <li>
+                    package :{
+                    <br> "id": integer,
+                    <br>  "name": string,
+                    <br>  "package_type": "year|month",
+                    <br>   "package_time": integer,
+                    <br>   "price": float
+                    }
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>/api/check_company</td>
+        <td>
+            Authorization: Bearer {token}
+        </td>
+        <td>
+            null
+        </td>
+        <td>
+            <ul>
+                <li>
+                    "company": { <br>
+                    "id": 2502, <br>
+                    "site_url": "http://www.google.com", <br>
+                    "company_name": "test", <br>
+                    },
+                </li>
+                <li>
+                    "package": { <br>
+                    "name": string,
+                    <br>
+                    "package_type": string, <br>
+                    "package_time": integer, <br>
+                    "price": float, <br>
+                    "start_date": datetime, <br>
+                    "end_date": datetime <br>
+                    }
+                </li>
+            </ul>
+        </td>
+    </tr>
+    </tr>
+</table>
+
+<h2>Schedule ve Jobs (Workers) Çalıştırma</h2>
+
+<code>php artisan schedule:work</code>
+
+ile laravel iç yapısında olan schedule çalıştırılır ve günde 1 kere joblar tetiklenir.
+
+<code>php artisan queue:work</code>
+
+ile kuyruk dinlemeye alınır ve schedule'dan tetiklenen joblar düzenli olarak çalışır.
+<br>
+
+<h3>Unix sunucuya kurulduğunda nohup veya cron benzeri yapıyla schedule aktif edildiğinde günlük olarak workerlar çalışır</h3>
+
+Unix Terminalde: <br>
+<code>
+    nohup php artisan schedule:work & <br>
+    nohup php artisan queue:work &
+</code>
+
+komutları 1 kere girildiğinde sunucu zamanlanmış komutları dinlemeye başlar.
+
+<br>
+
+<small>
+    Joblardan gelen sonuçlar(başarılı/başarısız ödemeler) results tablosuna kaydedilir
+</small>
+
+</body>
+</html>
