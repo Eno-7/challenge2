@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "ea40bb52-876a-479b-9111-be9baabb6008",
+		"name": "kobisi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Package List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/package"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Enes",
+							"type": "default"
+						},
+						{
+							"key": "lastname",
+							"value": "Ceylan",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "eno@endddo.com",
+							"type": "default"
+						},
+						{
+							"key": "company_name",
+							"value": "Vedoo",
+							"type": "default"
+						},
+						{
+							"key": "site_url",
+							"value": "https://bensen.com",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "default"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "eno@endddo.com",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set company package",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "company_id",
+							"value": "1001",
+							"type": "default"
+						},
+						{
+							"key": "package_id",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/api/set-company-package"
+			},
+			"response": []
+		},
+		{
+			"name": "Checked-company-package",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "3|TzYHqHazXzVCCWvgT9UWTaYwI4NUkPAbHff84fyM"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": "http://127.0.0.1:8000/api/checked-company-package"
+			},
+			"response": []
+		},
+		{
+			"name": "Package Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "deneme",
+							"type": "default"
+						},
+						{
+							"key": "type",
+							"value": "yearly",
+							"type": "default"
+						},
+						{
+							"key": "period",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "price",
+							"value": "20000",
+							"type": "default"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/api/package"
+			},
+			"response": []
+		}
+	]
+}
